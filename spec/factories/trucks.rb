@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :truck do
     name { "MyString" }
     email { "MyString" }
-    mobile { 1 }
+    mobile { "MyString" }
     website { "MyString" }
     facebook { "MyString" }
     google_map { "MyString" }
