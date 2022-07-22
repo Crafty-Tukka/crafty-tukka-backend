@@ -17,5 +17,25 @@ RSpec.describe Truck, type: :model do
   it "is valid with attributes" do
     expect(subject).to be_valid
   end
+
+  it "is not valid without a name" do
+    subject.name = ""
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid without a password_digest" do
+    subject.password_digest = ""
+    expect(subject).to_not be_valid
+  end
+
+  it "is valid without a website" do 
+    subject.website = ""
+    expect(subject).to be_valid
+  end
+
+  it "is valid without a google maps" do 
+    subject.google_maps = ""
+    expect(subject).to be_valid
+  end
   
 end
