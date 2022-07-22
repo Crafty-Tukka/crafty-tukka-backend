@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
+  # before_action :authenticate_user, only: [:create, :update, :destroy]
   before_action :set_event, only: [:show, :update, :destroy]
+  # before_action :check_ownership, only: [:update, :destroy]
 
   # GET /events
   def index
@@ -39,9 +41,16 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # set the event using params id
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    # check user ownership before they make changes
+    def check_ownership
+      if !(current_user.id == @event.venue_id)
+          render json: {error: "You are not authorised to do that"}
+      end
     end
 
     # Only allow a list of trusted parameters through.

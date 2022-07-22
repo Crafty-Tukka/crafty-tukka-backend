@@ -1,17 +1,19 @@
 class TrucksController < ApplicationController
+    # before_action :authenticate_user, only: [:create, :update, :destroy]
     before_action :set_truck, only: [:show, :update, :destroy]
     before_action :set_events, only: [:truck_events, :pending_truck_events]
+    # before_action :check_ownership, only: [:update, :destroy]
 
     # GET /trucks
     def index
-    @trucks = Truck.all
+        @trucks = Truck.all
 
-    render json: @trucks
+        render json: @trucks
     end
 
     # GET /trucks/1
     def show
-    render json: @truck
+        render json: @truck
     end
 
     # GET /events/foodtruck/1
@@ -28,42 +30,62 @@ class TrucksController < ApplicationController
 
     # POST /trucks
     def create
-    @truck = Truck.new(truck_params)
+        @truck = Truck.new(truck_params)
 
-    if @truck.save
-        render json: @truck, status: :created, location: @truck
-    else
-        render json: @truck.errors, status: :unprocessable_entity
-    end
+        if @truck.save
+            auth_token = Knock::AuthToken.new payload: {sub: @truck.id}
+            render json: {email: @truck.email, jwt: auth_token.token}, status: :created#, location: @truck
+        else
+            render json: @truck.errors, status: :unprocessable_entity
+        end
     end
 
-    # PATCH/PUT /trucks/1
+    # POST /auth/foodtruck/signin
+    def sign_in
+        @truck = Truck.find_by_email(params[:email])
+        if @truck && @truck.authenticate(params[:password])
+            auth_token = Knock::AuthToken.new payload: {sub: @truck.id}
+            render json: {email: @truck.email, jwt: auth_token.token}, status: 200
+        else
+            render json: {error: "Invalid email or password"}
+        end
+    end    
+
+    # PUT /foodtruck/1
     def update
-    if @truck.update(truck_params)
-        render json: @truck
-    else
-        render json: @truck.errors, status: :unprocessable_entity
-    end
+        if @truck.update(truck_params)
+            render json: @truck
+        else
+            render json: @truck.errors, status: :unprocessable_entity
+        end
     end
 
-    # DELETE /trucks/1
+    # DELETE /foodtrucks/1
     def destroy
-    @truck.destroy
+        @truck.destroy
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
+    # set the venue using params id
     def set_truck
         @truck = Truck.find(params[:id])
     end
 
+    # set the events for the truck using params id
     def set_events
         @truck = Truck.find(params[:id])
         @events = @truck.events
     end
 
+    # check user ownership before they make changes
+    def check_ownership
+        if !(current_user.id == @truck.id)
+            render json: {error: "You are not authorised to do that"}
+        end
+    end
+
     # Only allow a list of trusted parameters through.
     def truck_params
-        params.require(:truck).permit(:name, :email, :website, :facebook, :password_digest, :category, :description, :mobile, :google_maps)
+        params.require(:truck).permit(:name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps)
     end
 end
