@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :venue do
     name { "MyString" }
     email { "MyString" }
-    mobile { 1 }
+    mobile { "MyString" }
     website { "MyString" }
     facebook { "MyString" }
     description { "MyString" }
