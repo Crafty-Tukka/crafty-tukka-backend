@@ -28,7 +28,4 @@ RSpec.describe Event, type: :model do
     expect(subject).to_not be_valid
   end
 
-  # it "is valid with attributes" do
-  #   expect(subject).to be_valid
-  # end
 end
