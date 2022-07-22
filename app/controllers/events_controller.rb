@@ -13,26 +13,6 @@ class EventsController < ApplicationController
     render json: @event
   end
 
-  # GET /events/venue/1
-  def venue_events
-    
-  end
-
-  # GET /events/venue/1/pending
-  def pending_venue_events
-    
-  end
-
-  # GET /events/foodtruck/1
-  def foodtruck_events
-  
-  end
-
-  # GET /events/foodtruck/1/pending
-  def pending_foodtruck_events
-    
-  end  
-
   # POST /events
   def create
     @event = Event.new(event_params)
@@ -66,6 +46,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :start, :finish, :description, :truck_id, :venue_id, :confirmed_status)
+      params.require(:event).permit(:name, :start, :finish, :description, :truck_id, :venue_id, :confirmed)
     end
 end

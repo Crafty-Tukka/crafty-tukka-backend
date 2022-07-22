@@ -1,0 +1,2 @@
+### Events Index 
+GET http://localhost:5000/events
