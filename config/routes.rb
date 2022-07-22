@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   end
   get '/venues', to: "venues#index"
   get '/venues/:id', to: "venues#show"
+  delete "/venues/:id", to: "venues#destroy"
   get '/foodtrucks', to: "trucks#index"
   get '/foodtrucks/:id', to: "trucks#show"
+  delete "/foodtrucks/:id", to: "trucks#destroy"
   scope '/auth' do
     post "/venue/signup", to: "venues#create"
     post "/venue/signin", to: "venues#sign_in"

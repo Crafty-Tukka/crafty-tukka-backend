@@ -1,2 +1,19 @@
-### Events Index 
+### Get all events
 GET http://localhost:5000/events
+
+### Get event 3
+GET http://localhost:5000/events/3
+
+### Fail to get event 1000
+GET http://localhost:5000/events/1000
+
+### Create new venue
+POST http://localhost:5000/auth/venue/signup
+Content-Type: application/json
+
+{
+    "name": "White Brick",
+    "email": "whitebrick@venue.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
