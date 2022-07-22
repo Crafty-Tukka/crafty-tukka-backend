@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_054408) do
+ActiveRecord::Schema.define(version: 2022_07_22_063838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 2022_07_22_054408) do
     t.string "description"
     t.bigint "truck_id", null: false
     t.bigint "venue_id", null: false
-    t.boolean "confirmed_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "finish"
+    t.boolean "confirmed"
     t.index ["truck_id"], name: "index_events_on_truck_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2022_07_22_054408) do
     t.string "email"
     t.string "website"
     t.string "facebook"
-    t.string "google_map"
     t.string "password_digest"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
     t.string "mobile"
+    t.string "google_maps"
   end
 
   create_table "venues", force: :cascade do |t|
