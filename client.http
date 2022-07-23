@@ -1,14 +1,19 @@
-### Get all events
-GET http://localhost:5000/events
+########## VENUES #########
 
-### Get event 3
-GET http://localhost:5000/events/3
+### Successfully get all venues
+GET http://localhost:5000/venues
 
-### Fail to get event 1000
-GET http://localhost:5000/events/1000
+### Successfully get venue 1
+GET http://localhost:5000/venues/1
 
-### Create new venue
-POST http://localhost:5000/auth/venue/signup
+### Successfully get upcoming(confirmed) venue events
+GET http://localhost:5000/events/venues/1
+
+### Successfully get pending venue events
+GET http://localhost:5000/events/venues/1/pending
+
+### Successfully create new venue
+POST http://localhost:5000/auth/venues/signup
 Content-Type: application/json
 
 {
@@ -17,3 +22,159 @@ Content-Type: application/json
     "password": "password",
     "password_confirmation": "password"
 }
+
+### Unsuccessfully create new venue
+POST http://localhost:5000/auth/venues/signup
+Content-Type: application/json
+
+{
+    "email": "whitebrick@venue.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+### Successfully update venue 7
+PUT http://localhost:5000/auth/venues/7
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MjgzMjEsInN1YiI6N30.WwNGoUddhxvrO7PFuFZ2gM5NgKteW25p84M4jvgdRWU'
+Content-Type: application/json
+
+{
+    "description": "Locally brewed beer made by a great team of orcs"
+}
+
+### Successfully sign in
+POST http://localhost:5000/auth/venues/signin
+content-type: application/json
+
+{
+    "email": "whitebrick@venue.com",
+    "password": "password"
+}
+
+### Unsuccessfully sign in
+POST http://localhost:5000/auth/venues/signin
+content-type: application/json
+
+{
+    "email": "whitebrick@venue.com",
+    "password": "password1"
+}
+
+### Unsuccessfully delete venue 3
+DELETE http://localhost:5000/venues/3
+
+### Successfully delete venue 5
+DELETE http://localhost:5000/venues/5
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MjA3ODksInN1YiI6NX0.zwo8tlb8AFWpvXcCWtQ0sKKd08jkQYL0hBsYLvcF7xI'
+
+
+########## TRUCKS #########
+
+### Successfully get all trucks
+GET http://localhost:5000/foodtrucks
+
+### Successfully get truck 1
+GET http://localhost:5000/foodtrucks/1
+
+### Successfully get upcoming(confirmed) truck events
+GET http://localhost:5000/events/foodtrucks/1
+
+### Successfully get pending truck events
+GET http://localhost:5000/events/foodtrucks/1/pending
+
+### Successfully create new truck
+POST http://localhost:5000/auth/foodtrucks/signup
+Content-Type: application/json
+
+{
+    "name": "Mexican Special",
+    "email": "mexican@truck.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+### Unsuccessfully create new truck
+POST http://localhost:5000/auth/foodtrucks/signup
+Content-Type: application/json
+
+{
+    "email": "mexican@truck.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+### Successfully update truck 5
+PUT http://localhost:5000/auth/foodtrucks/5
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2Mjg0ODIsInN1YiI6NX0.erKcAJB1EQ2AenEH7wyGr6sLCSfAkK6AlwSp9lfp7uk'
+Content-Type: application/json
+
+{
+    "description": "Locally sourced fresh ingredients with a mexican theme"
+}
+
+### Successfully sign in
+POST http://localhost:5000/auth/foodtrucks/signin
+content-type: application/json
+
+{
+    "email": "mexican@truck.com",
+    "password": "password"
+}
+
+### Unsuccessfully sign in
+POST http://localhost:5000/auth/foodtrucks/signin
+content-type: application/json
+
+{
+    "email": "mexican@truck.com",
+    "password": "password1"
+}
+
+### Unsuccessfully delete truck 3
+DELETE http://localhost:5000/foodtrucks/3
+
+### Successfully delete truck 4
+DELETE http://localhost:5000/foodtrucks/4
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MjgzOTgsInN1YiI6NH0.dKsqD-wsimsJ7OMi2qfyKaY_PJCeHi8M1cUCQOs68fI'
+
+########## EVENTS #########
+
+### Successfully get all events
+GET http://localhost:5000/events
+
+### Successfully get event 3
+GET http://localhost:5000/events/3
+
+### Unsuccessfully get event 1000
+GET http://localhost:5000/events/1000
+
+### Successfully create new event
+POST http://localhost:5000/events
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'
+Content-Type: application/json
+
+{
+    "name": "Wings Night",
+    "start": "2022-08-09T05:00:00.000Z",
+    "finish": "2022-08-09T12:00:00.000Z",
+    "venue_id": 4,
+    "truck_id": 2
+}
+
+### Successfully edit event 
+PUT http://localhost:5000/events/4
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'
+Content-Type: application/json
+
+{
+    "name": "Wing Dings Night",
+    "start": "2022-08-09T05:00:00.000Z",
+    "finish": "2022-08-09T12:00:00.000Z",
+    "venue_id": 4,
+    "truck_id": 3,
+    "confirmed": false
+}
+
+### Successfully delete event 4
+DELETE http://localhost:5000/events/4
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'

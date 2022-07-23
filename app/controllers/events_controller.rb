@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  # before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :check_signed_in_user, only: [:create, :update, :destroy]
   before_action :set_event, only: [:show, :update, :destroy]
-  # before_action :check_ownership, only: [:update, :destroy]
+  before_action :check_ownership, only: [:update, :destroy]
 
   # GET /events
   def index
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      render json: @event, status: :created, location: @event
+      render json: @event, status: :created
     else
       render json: @event.errors, status: :unprocessable_entity
     end
@@ -48,8 +48,15 @@ class EventsController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-      if !(current_user.id == @event.venue_id)
+      if !(current_venue.id == @event.venue_id) and !(current_truck.id == @event.truck_id)
           render json: {error: "You are not authorised to do that"}
+      end
+    end
+
+    # check user ownership before they make changes
+    def check_signed_in_user
+      if !(current_venue) and !(current_truck)
+          render json: {error: "You need to be signed in to do that"}
       end
     end
 
