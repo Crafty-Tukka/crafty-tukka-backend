@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-      if !(current_venue.id == @event.venue_id) or !(current_truck.id == @event.truck_id)
+      if !(current_venue.id == @event.venue_id) and !(current_truck.id == @event.truck_id)
           render json: {error: "You are not authorised to do that"}
       end
     end
