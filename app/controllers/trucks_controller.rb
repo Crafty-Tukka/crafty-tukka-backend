@@ -1,57 +1,57 @@
 class TrucksController < ApplicationController
-    # before_action :authenticate_user, only: [:create, :update, :destroy]
+    before_action :authenticate_truck, only: [:update, :destroy]
     before_action :set_truck, only: [:show, :update, :destroy]
     before_action :set_events, only: [:truck_events, :pending_truck_events]
-    # before_action :check_ownership, only: [:update, :destroy]
+    before_action :check_ownership, only: [:update, :destroy]
 
-    # GET /trucks
+    # GET /foodtrucks
     def index
         @trucks = Truck.all
 
         render json: @trucks
     end
 
-    # GET /trucks/1
+    # GET /foodtrucks/1
     def show
         render json: @truck
     end
 
-    # GET /events/foodtruck/1
+    # GET /events/foodtrucks/1
     def truck_events
         @events = @events.select { |event| event.confirmed? }
         render json: @events
     end
 
-    # GET /events/foodtruck/1/pending
+    # GET /events/foodtrucks/1/pending
     def pending_truck_events
         @events = @events.select { |event| !event.confirmed? }
         render json: @events
     end
 
-    # POST /trucks
+    # POST /foodtrucks
     def create
         @truck = Truck.new(truck_params)
 
         if @truck.save
             auth_token = Knock::AuthToken.new payload: {sub: @truck.id}
-            render json: {email: @truck.email, jwt: auth_token.token}, status: :created#, location: @truck
+            render json: {id: @truck.id, email: @truck.email, jwt: auth_token.token}, status: :created
         else
             render json: @truck.errors, status: :unprocessable_entity
         end
     end
 
-    # POST /auth/foodtruck/signin
+    # POST /auth/foodtrucks/signin
     def sign_in
         @truck = Truck.find_by_email(params[:email])
         if @truck && @truck.authenticate(params[:password])
             auth_token = Knock::AuthToken.new payload: {sub: @truck.id}
-            render json: {email: @truck.email, jwt: auth_token.token}, status: 200
+            render json: {id: @truck.id, email: @truck.email, jwt: auth_token.token}, status: 200
         else
             render json: {error: "Invalid email or password"}
         end
     end    
 
-    # PUT /foodtruck/1
+    # PUT /foodtrucks/1
     def update
         if @truck.update(truck_params)
             render json: @truck
@@ -79,13 +79,13 @@ class TrucksController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-        if !(current_user.id == @truck.id)
+        if !(current_truck) or !(current_truck.id == @truck.id)
             render json: {error: "You are not authorised to do that"}
         end
     end
 
     # Only allow a list of trusted parameters through.
     def truck_params
-        params.require(:truck).permit(:name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps)
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps, :picture)
     end
 end
