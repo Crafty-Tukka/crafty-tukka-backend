@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   scope '/events' do
     root to: 'events#index'
     post '/', to: 'events#create'
-    scope '/venue' do
+    scope '/venues' do
       get '/:id', to: "venues#venue_events"
       get '/:id/pending', to: "venues#pending_venue_events"
     end
-    scope 'foodtruck' do
+    scope 'foodtrucks' do
       get '/:id', to: "trucks#truck_events"
       get '/:id/pending', to: "trucks#pending_truck_events"
     end
@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   get '/foodtrucks/:id', to: "trucks#show"
   delete "/foodtrucks/:id", to: "trucks#destroy"
   scope '/auth' do
-    post "/venue/signup", to: "venues#create"
-    post "/venue/signin", to: "venues#sign_in"
-    put "/venue/:id", to: "venues#update"
-    post "/foodtruck/signup", to: "trucks#create"
-    post "/foodtruck/signin", to: "trucks#sign_in"
-    put "/foodtruck/:id", to: "trucks#update"
+    post "/venues/signup", to: "venues#create"
+    post "/venues/signin", to: "venues#sign_in"
+    put "/venues/:id", to: "venues#update"
+    post "/foodtrucks/signup", to: "trucks#create"
+    post "/foodtrucks/signin", to: "trucks#sign_in"
+    put "/foodtrucks/:id", to: "trucks#update"
   end
 end
