@@ -143,10 +143,10 @@ Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2Mjgz
 GET http://localhost:5000/events
 
 ### Successfully get event 3
-GET http://localhost:5000/trucks/3
+GET http://localhost:5000/events/3
 
 ### Unsuccessfully get event 1000
-GET http://localhost:5000/trucks/1000
+GET http://localhost:5000/events/1000
 
 ### Successfully create new event
 POST http://localhost:5000/events
@@ -163,7 +163,7 @@ Content-Type: application/json
 
 ### Successfully edit event 
 PUT http://localhost:5000/events/4
-Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU0OTUsInN1YiI6N30.pYBRRZUJEUxJqG6ONoKjnl_DQy5pEQGDKgDYwZG95qY'
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'
 Content-Type: application/json
 
 {
@@ -171,6 +171,10 @@ Content-Type: application/json
     "start": "2022-08-09T05:00:00.000Z",
     "finish": "2022-08-09T12:00:00.000Z",
     "venue_id": 4,
-    "truck_id": 2,
+    "truck_id": 3,
     "confirmed": false
 }
+
+### Successfully delete event 4
+DELETE http://localhost:5000/events/4
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'
