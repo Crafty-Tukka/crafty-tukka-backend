@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :check_signed_in_user, only: [:create, :update, :destroy]
   before_action :set_event, only: [:show, :update, :destroy]
-  before_action :check_ownership, only: [:update, :destroy]
+  # before_action :check_ownership, only: [:update, :destroy]
 
   # GET /events
   def index
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    @event = current_venue.events.create(event_params)
 
     if @event.save
       render json: @event, status: :created
