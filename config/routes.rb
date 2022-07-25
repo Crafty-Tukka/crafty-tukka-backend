@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   scope '/events' do
     root to: 'events#index'
-    post '/', to: 'events#create'
+    post '/venuecreate', to: 'events#venuecreate'
+    post '/truckcreate', to: 'events#truckcreate'
     scope '/venues' do
       get '/:id', to: "venues#venue_events"
       get '/:id/pending', to: "venues#pending_venue_events"

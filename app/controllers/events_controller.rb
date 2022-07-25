@@ -16,8 +16,8 @@ class EventsController < ApplicationController
   end
 
   # POST /events
-  def create
-    @event = current_venue.events.create(event_params)
+  def venuecreate
+      @event = current_venue.events.create(event_params)
 
     if @event.save
       render json: @event, status: :created
@@ -25,6 +25,17 @@ class EventsController < ApplicationController
       render json: @event.errors, status: :unprocessable_entity
     end
   end
+
+  def truckcreate
+    @event = current_truck.events.create(event_params)
+
+    if @event.save
+      render json: @event, status: :created
+    else
+      render json: @event.errors, status: :unprocessable_entity
+    end
+  end
+
 
   # PATCH/PUT /events/1
   def update
