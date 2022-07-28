@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_234934) do
+ActiveRecord::Schema.define(version: 2022_07_28_034159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2022_07_22_234934) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.float "lat"
+    t.float "lng"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "venue_id", null: false
+    t.index ["venue_id"], name: "index_positions_on_venue_id"
+  end
+
   create_table "trucks", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -82,10 +91,12 @@ ActiveRecord::Schema.define(version: 2022_07_22_234934) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "mobile"
+    t.string "address"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "trucks"
   add_foreign_key "events", "venues"
+  add_foreign_key "positions", "venues"
 end
