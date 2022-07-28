@@ -26,4 +26,6 @@ end
 
 if Position.count == 0
     Position.create(lat: -27.548333, lng: 153.0315574, venue_id: 1)
+    Position.create(lat: -27.5296816, lng: 153.0088927, venue_id: 2)
+    Position.create(lat: -27.4362843, lng: 153.0153557, venue_id: 3)
 end
