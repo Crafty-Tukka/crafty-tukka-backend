@@ -8,7 +8,10 @@ class VenuesController < ApplicationController
     def index
         @venues = Venue.all
 
-        render json: @venues
+
+
+        render json: @venues.to_json(include: [:position])
+
     end
 
     # GET /venues/1
@@ -87,6 +90,6 @@ class VenuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def venue_params
-        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :description, :mobile, :google_maps, :picture)
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :description, :mobile, :google_maps, :picture, :address, position_attributes: [:lat, :lng, :venue_id])
     end
 end
