@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   scope '/events' do
     root to: 'events#index'
     post '/venuecreate', to: 'events#venuecreate'
-    post '/truckcreate', to: 'events#truckcreate'
     scope '/venues' do
       get '/:id', to: "venues#venue_events"
       get '/:id/pending', to: "venues#pending_venue_events"
