@@ -31,6 +31,7 @@ class VenuesController < ApplicationController
 
     # POST /auth/venues/signup
     def create
+        print venue_params
         @venue = Venue.new(venue_params)
 
         if @venue.save
@@ -88,6 +89,6 @@ class VenuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def venue_params
-        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :description, :mobile, :google_maps, :picture, :address, position_attributes: [:lat, :lng, :venue_id])
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :picture, :description, :mobile, :google_maps, :address, position_attributes: [:lat, :lng, :venue_id])
     end
 end
