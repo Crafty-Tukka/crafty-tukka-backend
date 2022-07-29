@@ -26,9 +26,9 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1
-  # def show
-  #   render json: @event
-  # end
+  def show
+    render json: @event
+  end
 
   # POST /events
   def venuecreate
