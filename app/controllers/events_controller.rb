@@ -5,9 +5,24 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @events = []
 
-    render json: @events
+    if (params[:venue])
+      Event.find_by_venue(params[:venue]).order("updated_at DESC").each do |event|
+        @events << event.render_event_details
+      end
+    else
+      Event.order("updated_at DESC").each do |event|
+        @events << event.render_event_details
+      end
+    # @events = Event.all
+
+    if @events.count == 0
+      render json: {error: "Messages not found"}
+     else
+      render json: @events
+     end
+    end
   end
 
   # GET /events/1
@@ -64,6 +79,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :start, :finish, :description, :truck_id, :venue_id, :confirmed)
+      params.require(:event).permit(:id, :name, :start, :finish, :description, :truck_id, :venue_id, :confirmed)
     end
 end
