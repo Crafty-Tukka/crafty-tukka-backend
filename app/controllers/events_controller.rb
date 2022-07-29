@@ -26,16 +26,16 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1
-  def show
-    render json: @event
-  end
+  # def show
+  #   render json: @event
+  # end
 
   # POST /events
   def venuecreate
       @event = current_venue.events.create(event_params)
 
     if @event.save
-      render json: @event, status: :created
+      render json: @event.render_event_details, status: :created
     else
       render json: @event.errors, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   def update
     if @event.update(event_params)
-      render json: @event
+      render json: @event.render_event_details
     else
       render json: @event.errors, status: :unprocessable_entity
     end
