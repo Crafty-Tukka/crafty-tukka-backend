@@ -6,7 +6,7 @@ class Venue < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     has_one_attached :picture
 
-    def get_picture_url
-        url_for(self.picture)
+    def picture_url
+        Rails.application.routes.url_helpers.url_for(picture) if picture.attached?
     end
 end
