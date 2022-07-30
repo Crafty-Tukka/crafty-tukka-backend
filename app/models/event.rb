@@ -17,7 +17,9 @@ class Event < ApplicationRecord
       venue: self.venue.name,
       address: self.venue.address,
       truck: self.truck.name,
-      confirmed: self.confirmed
+      confirmed: self.confirmed,
+      lat: self.venue.lat,
+      lng: self.venue.lng
     }
   end
 
