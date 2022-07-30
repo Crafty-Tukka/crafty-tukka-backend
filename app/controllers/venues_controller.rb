@@ -8,7 +8,7 @@ class VenuesController < ApplicationController
     def index
         @venues = Venue.all
 
-        render json: @venues.to_json(include: [:picture])
+        render json: @venues
 
     end
 
