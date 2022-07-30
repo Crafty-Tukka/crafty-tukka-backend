@@ -15,6 +15,7 @@ class Event < ApplicationRecord
       finish_time: self.finish.strftime("%I:%M%p"),
       description: self.description,
       venue: self.venue.name,
+      picture_url: self.venue.picture_url,
       address: self.venue.address,
       truck: self.truck.name,
       confirmed: self.confirmed,

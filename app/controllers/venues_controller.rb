@@ -6,9 +6,11 @@ class VenuesController < ApplicationController
 
     # GET /venues
     def index
-        @venues = Venue.all
+        @venues = Venue.all.with_attached_picture
 
-        render json: @venues
+        render json: @venues.map { | venue |
+            venue.as_json.merge({ picture_url: url_for(venue.picture)})}
+
 
     end
 
@@ -89,6 +91,6 @@ class VenuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def venue_params
-        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :picture, :description, :mobile, :google_maps, :address, :lat, :lng)
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :picture, :description, :mobile, :google_maps, :address, :lat, :lng, :picture_url)
     end
 end
