@@ -33,14 +33,14 @@ class VenuesController < ApplicationController
 
     # POST /auth/venues/signup
     def create
-        print venue_params
         @venue = Venue.new(venue_params)
 
         if @venue.save
             auth_token = Knock::AuthToken.new payload: {sub: @venue.id}
             render json: {id: @venue.id, email: @venue.email, jwt: auth_token.token}, status: :created
         else
-            render json: @venue.errors, status: :unprocessable_entity
+            print @venue.errors
+            render json: {error: @venue.errors}
         end
     end
 
