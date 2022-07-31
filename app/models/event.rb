@@ -9,13 +9,18 @@ class Event < ApplicationRecord
     return {
       id: self.id,
       name: self.name,
-      start: self.start,
-      finish: self.finish,
+      start: self.start.strftime("%d/%m/%Y"),
+      start_time: self.start.strftime("%I:%M%p"),
+      finish: self.finish.strftime("%d/%m/%Y"),
+      finish_time: self.finish.strftime("%I:%M%p"),
       description: self.description,
       venue: self.venue.name,
+      picture_url: self.venue.picture_url,
       address: self.venue.address,
       truck: self.truck.name,
-      confirmed: self.confirmed
+      confirmed: self.confirmed,
+      lat: self.venue.lat,
+      lng: self.venue.lng
     }
   end
 
