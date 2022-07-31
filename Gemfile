@@ -17,7 +17,6 @@ gem 'puma', '~> 5.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 gem 'aws-sdk-s3'
-gem 'jsonapi-serializer'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
