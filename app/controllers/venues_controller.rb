@@ -3,6 +3,7 @@ class VenuesController < ApplicationController
     before_action :set_venue, only: [:show, :update, :destroy]
     before_action :set_events, only: [:venue_events, :pending_venue_events]
     before_action :check_ownership, only: [:update, :destroy]
+    rescue_from ActiveSupport::MessageVerifier::InvalidSignature, :with => :invalid_signature
 
     # GET /venues
     def index
@@ -84,7 +85,7 @@ class VenuesController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-        if !(current_venue) or !(current_venue.id == @venue.id)
+        if !(current_venue.id == @venue.id)
             render json: {error: "You are not authorised to do that"}
         end
     end
@@ -92,5 +93,10 @@ class VenuesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def venue_params
         params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :picture, :description, :mobile, :google_maps, :address, :lat, :lng, :picture_url)
+    end
+
+    def invalid_signature(exception)
+        render json: { error: "Item Image is compulsory. Please upload one" }, status: :bad_request
+        puts exception
     end
 end

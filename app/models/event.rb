@@ -21,7 +21,6 @@ class Event < ApplicationRecord
       confirmed: self.confirmed,
       lat: self.venue.lat,
       lng: self.venue.lng
-      venue_id: self.venue.id
     }
   end
 
