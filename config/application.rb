@@ -23,6 +23,7 @@ module CraftyTukkaBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1 and config.autoloader = :classic
+    config.time_zone = 'Australia/Brisbane'
 
     # Configuration for the application, engines, and railties goes here.
     #

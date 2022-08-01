@@ -6,9 +6,11 @@ class TrucksController < ApplicationController
 
     # GET /foodtrucks
     def index
-        @trucks = Truck.all
+        @trucks = Truck.all.with_attached_picture
 
-        render json: @trucks
+        render json: @trucks.map { |truck|
+            truck.as_json.merge({ picture_url: url_for(truck.picture)})
+        }
     end
 
     # GET /foodtrucks/1
@@ -79,13 +81,13 @@ class TrucksController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-        if !(current_truck) or !(current_truck.id == @truck.id)
+        if !(current_truck.id == @truck.id)
             render json: {error: "You are not authorised to do that"}
         end
     end
 
     # Only allow a list of trusted parameters through.
     def truck_params
-        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps, :picture)
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps, :picture, :picture_url)
     end
 end

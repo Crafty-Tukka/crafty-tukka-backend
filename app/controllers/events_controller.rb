@@ -8,11 +8,11 @@ class EventsController < ApplicationController
     @events = []
 
     if (params[:venue])
-      Event.find_by_venue(params[:venue]).order("updated_at DESC").each do |event|
+      Event.find_by_venue(params[:venue]).order(date: :asc).each do |event|
         @events << event.render_event_details
       end
     else
-      Event.order("updated_at DESC").each do |event|
+      Event.order(date: :asc).each do |event|
         @events << event.render_event_details
       end
     # @events = Event.all
@@ -37,7 +37,8 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event.render_event_details, status: :created
     else
-      render json: @event.errors, status: :unprocessable_entity
+      print @event.errors
+            render json: {error: @event.errors}
     end
   end
 
@@ -48,7 +49,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       render json: @event.render_event_details
     else
-      render json: @event.errors, status: :unprocessable_entity
+      render json: {error: @event.errors}
     end
   end
 
@@ -65,20 +66,20 @@ class EventsController < ApplicationController
 
     # check user ownership before they make changes
     def check_ownership
-      if !(current_venue.id == @event.venue_id) or !(current_truck.id == @event.truck_id)
+      if !(current_venue.id == @event.venue_id)
           render json: {error: "You are not authorised to do that"}
       end
     end
 
     # check user ownership before they make changes
     def check_signed_in_user
-      if !(current_venue) and !(current_truck)
+      if !(current_venue)
           render json: {error: "You need to be signed in to do that"}
       end
     end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.permit(:id, :name, :start, :finish, :description, :truck_id, :venue_id, :confirmed)
+      params.permit(:id, :name, :date, :start_time, :finish_time, :description, :truck_id, :venue_id, :confirmed)
     end
 end
