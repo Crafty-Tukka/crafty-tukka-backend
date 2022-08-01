@@ -6,9 +6,11 @@ class TrucksController < ApplicationController
 
     # GET /foodtrucks
     def index
-        @trucks = Truck.all
+        @trucks = Truck.all.with_attached_picture
 
-        render json: @trucks
+        render json: @trucks.map { |truck|
+            truck.as_json.merge({ picture_url: url_for(truck.picture)})
+        }
     end
 
     # GET /foodtrucks/1
@@ -86,6 +88,6 @@ class TrucksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def truck_params
-        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps, :picture)
+        params.permit(:id, :name, :email, :website, :facebook, :password, :password_confirmation, :category, :description, :mobile, :google_maps, :picture, :picture_url)
     end
 end

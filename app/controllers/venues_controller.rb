@@ -10,7 +10,8 @@ class VenuesController < ApplicationController
         @venues = Venue.all.with_attached_picture
 
         render json: @venues.map { | venue |
-            venue.as_json.merge({ picture_url: url_for(venue.picture)})}
+            venue.as_json.merge({ picture_url: url_for(venue.picture)})
+        }
 
 
     end
@@ -96,7 +97,7 @@ class VenuesController < ApplicationController
     end
 
     def invalid_signature(exception)
-        render json: { error: "Item Image is compulsory. Please upload one" }, status: :bad_request
+        render json: { error: "Venue Image is compulsory. Please upload one before continuing." }, status: :bad_request
         puts exception
     end
 end
