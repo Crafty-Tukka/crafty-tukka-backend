@@ -8,11 +8,11 @@ class EventsController < ApplicationController
     @events = []
 
     if (params[:venue])
-      Event.find_by_venue(params[:venue]).order("updated_at DESC").each do |event|
+      Event.find_by_venue(params[:venue]).order(date: :asc).each do |event|
         @events << event.render_event_details
       end
     else
-      Event.order("updated_at DESC").each do |event|
+      Event.order(date: :asc).each do |event|
         @events << event.render_event_details
       end
     # @events = Event.all
