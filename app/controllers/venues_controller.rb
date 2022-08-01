@@ -10,7 +10,8 @@ class VenuesController < ApplicationController
         @venues = Venue.all.with_attached_picture
 
         render json: @venues.map { | venue |
-            venue.as_json.merge({ picture_url: url_for(venue.picture)})}
+            venue.as_json.merge({ picture_url: url_for(venue.picture)})
+        }
 
 
     end
