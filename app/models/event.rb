@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :truck
   belongs_to :venue
   validates :name, presence: true
+  validates :description, presence: true
   validates :start, presence: true
   validates :finish, presence: true
 
@@ -18,6 +19,7 @@ class Event < ApplicationRecord
       picture_url: self.venue.picture_url,
       address: self.venue.address,
       truck: self.truck.name,
+      truck_id: self.truck.id,
       confirmed: self.confirmed,
       lat: self.venue.lat,
       lng: self.venue.lng

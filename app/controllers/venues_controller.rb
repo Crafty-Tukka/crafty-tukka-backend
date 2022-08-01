@@ -96,7 +96,7 @@ class VenuesController < ApplicationController
     end
 
     def invalid_signature(exception)
-        render json: { error: "Item Image is compulsory. Please upload one" }, status: :bad_request
+        render json: { error: "Venue Image is compulsory. Please upload one before continuing." }, status: :bad_request
         puts exception
     end
 end

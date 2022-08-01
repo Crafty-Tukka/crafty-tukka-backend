@@ -37,7 +37,8 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event.render_event_details, status: :created
     else
-      render json: @event.errors, status: :unprocessable_entity
+      print @event.errors
+            render json: {error: @event.errors}
     end
   end
 
@@ -48,7 +49,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       render json: @event.render_event_details
     else
-      render json: @event.errors, status: :unprocessable_entity
+      render json: {error: @event.errors}
     end
   end
 
