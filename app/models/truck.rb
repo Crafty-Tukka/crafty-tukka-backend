@@ -5,4 +5,8 @@ class Truck < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :email, presence: true, uniqueness: true
     has_one_attached :picture
+
+    def picture_url
+        Rails.application.routes.url_helpers.url_for(picture) if picture.attached?
+    end
 end
