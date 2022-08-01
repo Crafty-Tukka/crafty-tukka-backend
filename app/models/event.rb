@@ -1,11 +1,14 @@
 class Event < ApplicationRecord
   belongs_to :truck
   belongs_to :venue
+  # validate  :finish_time_is_after_start_time
+  validate  :time_is_valid
   validates :name, presence: true
   validates :description, presence: true
   validates :date, presence: true
   validates :start_time, presence: true
   validates :finish_time, presence: true
+
 
   def render_event_details
     return {
@@ -30,5 +33,23 @@ class Event < ApplicationRecord
     venue = Venue.find_by(name: name)
     return self.where(venue: venue)
   end
+
+  private
+
+  def time_is_valid
+    if start_time.blank?
+      errors.add(:start_time, 'cannot be blank')
+    elsif  finish_time.blank?
+      errors.add(:finish_time, 'cannot be blank')
+    elsif finish_time < start_time
+      errors.add(:finish_time, 'cannot be before the start time')
+    end
+  end
+
+  # def finish_time_is_after_start_time
+  #   if finish_time < start_time
+  #     errors.add(:finish_time, 'cannot be before the start time')
+  #   end
+  # end
 
 end
