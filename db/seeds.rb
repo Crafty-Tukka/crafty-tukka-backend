@@ -25,9 +25,9 @@ if Truck.count == 0
 end
 
 if Event.count == 0
-    Event.create(name: "Burger Night", description: "Come down for some moo free burgers and some local ales.", start: Time.local(2022, 8, 9, 17, 00), finish: Time.local(2022, 8, 9, 20, 00), truck_id: 1, venue_id: 1, confirmed: true)
-    Event.create(name: "Hot dogs and hot rods", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies", start: Time.local(2022, 8, 9, 15, 00), finish: Time.local(2022, 8, 9, 22, 00), truck_id: 2, venue_id: 2, confirmed: true)
-    Event.create(name: "Burger Night", description: "Come bash a burger and crush an ale", start: Time.local(2022, 8, 9, 18, 00), finish: Time.local(2022, 8, 9, 21, 30), truck_id: 3, venue_id: 3, confirmed: true)
+    Event.create(name: "Burger Night", description: "Come down for some moo free burgers and some local ales.", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), truck_id: 1, venue_id: 1, confirmed: true)
+    Event.create(name: "Hot dogs and hot rods", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), truck_id: 2, venue_id: 2, confirmed: true)
+    Event.create(name: "Burger Night", description: "Come bash a burger and crush an ale", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), truck_id: 3, venue_id: 3, confirmed: true)
 end
 
 
