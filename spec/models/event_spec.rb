@@ -6,8 +6,8 @@ RSpec.describe Event, type: :model do
   subject {
     described_class.new(name: "Event",
                         description: "Lorem ipsum",
-                        start: DateTime.now,
-                        finish: DateTime.now + 1.week,
+                        start_time: DateTime.now,
+                        finish_time: DateTime.now + 1.week,
                         truck_id: 1,
                         venue_id: 1,
                         confirmed: true)
@@ -19,13 +19,14 @@ RSpec.describe Event, type: :model do
   end
 
   it "is not valid without a start attribute" do
-    subject.start = nil
+    subject.start_time = nil
     expect(subject).to_not be_valid
   end
 
   it "is not valid without a finish attribute" do
-    subject.finish = nil
+    subject.finish_time = nil
     expect(subject).to_not be_valid
   end
+  
 
 end

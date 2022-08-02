@@ -5,7 +5,7 @@ FactoryBot.define do
     mobile { "MyString" }
     website { "MyString" }
     facebook { "MyString" }
-    google_map { "MyString" }
+    google_maps { "MyString" }
     password_digest { "MyString" }
     category { "MyString" }
   end
