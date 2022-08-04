@@ -3,11 +3,10 @@ class Event < ApplicationRecord
   belongs_to :venue
   # validate  :finish_time_is_after_start_time
   validate  :time_is_valid
+  validate  :truck_valid
   validates :name, presence: true
   validates :description, presence: true
   validates :date, presence: true
-  validates :start_time, presence: true
-  validates :finish_time, presence: true
 
 
   def render_event_details
@@ -44,6 +43,12 @@ class Event < ApplicationRecord
       errors.add(:finish_time, 'cannot be blank')
     elsif finish_time < start_time
       errors.add(:finish_time, 'cannot be before the start time')
+    end
+  end
+
+  def truck_valid
+    if date == truck.events.dates
+      errors.add(:truck, 'truck is already booked on this date')
     end
   end
 
