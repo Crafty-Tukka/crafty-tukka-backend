@@ -81,11 +81,11 @@ class VenuesController < ApplicationController
     # set the events for the venue using params id
     def set_events
         @venue = Venue.find(params[:id])
-        @events = @venue.events
-        # @events = []
-        # @venue.events.order("updated_at DESC").each do |event|
-        #     @events << event.render_event_details
-        # end
+        # @events = @venue.events
+        @events = []
+        @venue.events.order("updated_at DESC").each do |event|
+            @events << event.render_event_details
+        end
     end
 
     # check user ownership before they make changes
