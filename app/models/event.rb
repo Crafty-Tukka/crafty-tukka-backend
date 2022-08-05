@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :venue
   # validate  :finish_time_is_after_start_time
   validate  :time_is_valid
-  validate  :truck_valid
+  # validate  :truck_valid
   validates :name, presence: true
   validates :description, presence: true
   validates :date, presence: true
@@ -46,11 +46,11 @@ class Event < ApplicationRecord
     end
   end
 
-  def truck_valid
-    if date == truck.events.dates
-      errors.add(:truck, 'truck is already booked on this date')
-    end
-  end
+  # def truck_valid
+  #   if date == truck
+  #     errors.add(:truck, 'truck is already booked on this date')
+  #   end
+  # end
 
   # def finish_time_is_after_start_time
   #   if finish_time < start_time
