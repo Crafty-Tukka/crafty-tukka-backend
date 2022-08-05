@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:3000', 'localhost:3001', '127.0.0.1:5000', 'https://crafty-tukka-frontend-staging.vercel.app'
+    origins 'localhost:3000', 'localhost:3001', '127.0.0.1:5000', 'https://crafty-tukka-frontend-staging.vercel.app', 'https://crafty-tukka.vercel.app'
 
     resource '*',
       headers: :any,
