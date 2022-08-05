@@ -47,7 +47,7 @@ POST http://localhost:5000/auth/venues/signin
 content-type: application/json
 
 {
-    "email": "whitebrick@venue.com",
+    "email": " beer@blackhops.com.au",
     "password": "password"
 }
 
@@ -163,16 +163,11 @@ Content-Type: application/json
 
 ### Successfully edit event 
 PUT http://localhost:5000/events/4
-Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg2MzU5NDUsInN1YiI6NH0.79vxvLRuem5cYTVR7-E5WWP6Azh9KhM0MdfV8DU_m-c'
+Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTkzMjI3NTYsInN1YiI6NH0.O3mEphKwsTS0PXc6qui4OAroZvLs9Akj_A-ln7m21xg'
 Content-Type: application/json
 
 {
-    "name": "Wing Dings Night",
-    "start": "2022-08-09T05:00:00.000Z",
-    "finish": "2022-08-09T12:00:00.000Z",
-    "venue_id": 4,
-    "truck_id": 3,
-    "confirmed": false
+    "name": "Sip and Paint",
 }
 
 ### Successfully delete event 4

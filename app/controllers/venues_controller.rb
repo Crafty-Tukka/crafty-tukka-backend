@@ -23,13 +23,13 @@ class VenuesController < ApplicationController
 
     # GET /events/venues/1
     def venue_events
-        @events = @events.select { |event| event.confirmed? }
+        # @events = @events.select { |event| event.confirmed? }
         render json: @events
     end
 
     # GET /events/venues/1/pending
     def pending_venue_events
-        @events = @events.select { |event| !event.confirmed? }
+        # @events = @events.select { |event| !event.confirmed? }
         render json: @events
     end
 
@@ -81,7 +81,11 @@ class VenuesController < ApplicationController
     # set the events for the venue using params id
     def set_events
         @venue = Venue.find(params[:id])
-        @events = @venue.events
+        # @events = @venue.events
+        @events = []
+        @venue.events.order("updated_at DESC").each do |event|
+            @events << event.render_event_details
+        end
     end
 
     # check user ownership before they make changes

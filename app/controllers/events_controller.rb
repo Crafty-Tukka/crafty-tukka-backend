@@ -55,7 +55,11 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
-    @event.destroy
+    if @event.destroy
+      render json: {message: "Event successfully deleted"}, status: 200
+    else
+      render json: {error: @event.errors}
+    end
   end
 
   private
