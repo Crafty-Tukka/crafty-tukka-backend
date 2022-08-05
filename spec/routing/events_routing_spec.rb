@@ -11,16 +11,12 @@ RSpec.describe EventsController, type: :routing do
     end
 
 
-    it "routes to #create" do
-      expect(post: "/events").to route_to("events#create")
+    it "routes to #venuecreate" do
+      expect(post: "/events/venuecreate").to route_to("events#venuecreate")
     end
 
     it "routes to #update via PUT" do
       expect(put: "/events/1").to route_to("events#update", id: "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(patch: "/events/1").to route_to("events#update", id: "1")
     end
 
     it "routes to #destroy" do
