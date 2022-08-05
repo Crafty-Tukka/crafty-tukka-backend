@@ -4,13 +4,14 @@ RSpec.describe Venue, type: :model do
   subject {
     described_class.new(
       name: "Venue",
-      description: "Lorem ipsum",
+      description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
       email: "MyString",
-      mobile: "MyString",
+      mobile: "12345667",
       website: "MyString",
       facebook: "MyString",
       google_maps: "MyString",
-      password_digest: "MyString",)
+      password_digest: "MyString",
+      address: "MyString")
   }
 
   it "is valid with attributes" do
