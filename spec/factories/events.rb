@@ -1,11 +1,12 @@
 FactoryBot.define do
   factory :event do
     name { "MyString" }
-    start { "2022-07-22 14:56:16" }
-    finish { "2022-07-22 14:56:16" }
+    date { "2022-07-22 14:56:16" }
+    start_time { "2022-07-22 14:56:16" }
+    finish_time { "2022-07-22 14:56:17" }
     description { "MyString" }
     truck { nil }
     venue { nil }
-    confirmed_status { false }
+    confirmed_status { true }
   end
 end
