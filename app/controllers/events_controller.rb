@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     # @events = Event.all
 
     if @events.count == 0
-      render json: {error: "Messages not found"}
+      render json: {error: "Events not found"}
      else
       render json: @events
      end
