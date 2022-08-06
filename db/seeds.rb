@@ -28,24 +28,33 @@ if Venue.count == 0
 end
 
 if Truck.count == 0
-    t1 = Truck.create(name: "MooFree Burgers", email: "footruck@moofreeburgers.com.au", password: "123456", password_confirmation:"123456", mobile: "61478686440", website: "https://moofreeburgers.com.au/", facebook: "https://www.facebook.com/moofreeburgers/", description: "Dreaming of a big fat juicy cheese burger but against animal cruelty?  Charlies Brothers were too, and so set about to bring a change to the world starting here in Brisbane. No Cows involved from start to finish, less harm to the environment and so MooFree Burgers was born.", google_maps: "https://www.google.com/maps/place/Ballistic+Beer+Co/@-27.548333,153.0315574,15z/data=!4m5!3m4!1s0x0:0x6c36675c8fd00b00!8m2!3d-27.548333!4d153.0315574", category: "Burgers")
-    t2 = Truck.create(name: "Hot Dog City", email: "hotdogs@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333445", website: "www.hotdogs.com", facebook: "https://www.facebook.com/hotdogs" ,description: "Room temperature hotdogs to die for", google_maps: "https://www.google.com/maps/place/Helios+Brewing+Company/@-27.5296816,153.0088927,17z/data=!3m1!4b1!4m5!3m4!1s0x6b91500bb76005f1:0x68017e7594fb0f9a!8m2!3d-27.5296816!4d153.0110814", category: "Hotdogs")
-    t3 = Truck.create(name: "Bob's Burgers", email: "burgers@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333446", website: "www.burgers.com", facebook: "https://www.facebook.com/burgers",description: "Succulent bespoke deconstructed burgers", google_maps: "https://www.google.com/maps/place/Archer+Brewing+(future+location)/@-27.4362843,153.0153557,15z/data=!4m5!3m4!1s0x0:0x3d436a4dff761c40!8m2!3d-27.4362717!4d153.0152646", category: "Burgers")
-    t1.picture.attach(io: File.open(Rails.root.join('app/assets/images/13.jpg')),
-    filename: '13.jpg')
-    t2.picture.attach(io: File.open(Rails.root.join('app/assets/images/14.jpg')),
-    filename: '14.jpg')
-    t3.picture.attach(io: File.open(Rails.root.join('app/assets/images/15.jpg')),
-    filename: '15.jpg')
+    t1 = Truck.create(name: "MooFree Burgers", email: "footruck@moofreeburgers.com.au", password: "123456", password_confirmation:"123456", mobile: "61478686440", website: "https://moofreeburgers.com.au/", facebook: "https://www.facebook.com/moofreeburgers/", description: "Dreaming of a big fat juicy cheese burger but against animal cruelty?  Charlies Brothers were too, and so set about to bring a change to the world starting here in Brisbane. No Cows involved from start to finish, less harm to the environment and so MooFree Burgers was born.", google_maps: "", category: "Burgers")
+    t2 = Truck.create(name: "Hot Dog City", email: "hotdogs@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333445", website: "www.hotdogs.com", facebook: "https://www.facebook.com/hotdogs" ,description: "Room temperature hotdogs to die for", google_maps: "", category: "Hotdogs")
+    t3 = Truck.create(name: "Bob's Burgers", email: "burgers@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333446", website: "www.burgers.com", facebook: "https://www.facebook.com/burgers",description: "Succulent bespoke deconstructed burgers", google_maps: "", category: "Burgers")
+    t4 = Truck.create(name: "Tokyo City Sushi", email: "cityshushi@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61478686447", website: "https://mmmmsushi.com.au/", facebook: "https://www.facebook.com/suhsi/", description: "I love sushi, you love sushi, let's get our sushi on", google_maps: "", category: "Japanese")
+    t5 = Truck.create(name: "Low and Slow BBQ", email: "barbie@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333448", website: "www.slowdown.com", facebook: "https://www.facebook.com/lownslow" ,description: "Low and Slow. This sums up our food and our staff. LOLZ!!!", google_maps: "", category: "BBQ")
+    t6 = Truck.create(name: "Tacos del Diablo", email: "tacos@gmail.com", password: "123456", password_confirmation:"123456", mobile: "61422333449", website: "www.tacos.com", facebook: "https://www.facebook.com/tacos",description: "Who doesn't love a taco? I certainly do! These tacos are devilish!!!", google_maps: "", category: "Mexican")
+    t1.picture.attach(io: File.open(Rails.root.join('app/assets/images/moo.jpg')),
+    filename: 'moo.jpg')
+    t2.picture.attach(io: File.open(Rails.root.join('app/assets/images/hotdog.jpg')),
+    filename: 'hotdog.jpg')
+    t3.picture.attach(io: File.open(Rails.root.join('app/assets/images/bobs.jpg')),
+    filename: 'bobs.jpg')
+    t4.picture.attach(io: File.open(Rails.root.join('app/assets/images/sushi.jpg')),
+    filename: 'sushi.jpg')
+    t5.picture.attach(io: File.open(Rails.root.join('app/assets/images/bbq.jpg')),
+    filename: 'bbq.jpg')
+    t6.picture.attach(io: File.open(Rails.root.join('app/assets/images/taco.jpg')),
+    filename: 'taco.jpg')
 end
 
 if Event.count == 0
-    Event.create(name: "Burger Night", description: "Come down for some moo free burgers and some local ales.", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 01:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 02:00', '%m/%d/%Y %H:%M'), truck_id: 1, venue_id: 1, confirmed: true)
-    Event.create(name: "Hot dogs and hot rods", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 2, venue_id: 2, confirmed: true)
-    Event.create(name: "Burger Night 3", description: "Come bash a burger and crush an ale!", date: Time.strptime('08/10/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/10/2022 05:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/10/2022 06:00', '%m/%d/%Y %H:%M'), truck_id: 3, venue_id: 3, confirmed: true)
-    Event.create(name: "Burger Night 2", description: "Come bash a burger and crush an ale!!", date: Time.strptime('08/13/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/13/2022 05:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/13/2022 06:00', '%m/%d/%Y %H:%M'), truck_id: 3, venue_id: 4, confirmed: true)
-    Event.create(name: "Hot dogs and hot rods 2", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies!!!", date: Time.strptime('08/14/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/14/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/14/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 2, venue_id: 5, confirmed: true)
-    Event.create(name: "Hot dogs and hot rods 3", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies!!!!", date: Time.strptime('08/15/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('08/15/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('08/15/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 1, venue_id: 6, confirmed: true)
+    Event.create(name: "Vegan Burger Night", description: "Come down for some moo free burgers and some local ales.", date: Time.strptime('09/02/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/02/2022 01:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/02/2022 02:00', '%m/%d/%Y %H:%M'), truck_id: 1, venue_id: 1, confirmed: true)
+    Event.create(name: "Hot dogs and hot rods", description: "Bring your hot rod down and enjoy some hot dogs and cold brewskies", date: Time.strptime('09/03/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/03/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/03/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 2, venue_id: 2, confirmed: true)
+    Event.create(name: "Burger Night", description: "Come bash a burger and crush an ale!", date: Time.strptime('09/04/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/04/2022 05:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/04/2022 06:00', '%m/%d/%Y %H:%M'), truck_id: 3, venue_id: 3, confirmed: true)
+    Event.create(name: "Sushi Truck", description: "Best sushi in Brissy. Get on down!", date: Time.strptime('09/05/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/05/2022 05:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/05/2022 06:00', '%m/%d/%Y %H:%M'), truck_id: 4, venue_id: 4, confirmed: true)
+    Event.create(name: "Brisket and Beers", description: "The most tender brisket you've ever eaten", date: Time.strptime('09/06/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/06/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/06/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 5, venue_id: 5, confirmed: true)
+    Event.create(name: "Mexican Mariachi", description: "Da da da da da da, Mexican food!!", date: Time.strptime('09/07/2022 00:00', '%m/%d/%Y %H:%M'), start_time: Time.strptime('09/07/2022 03:00', '%m/%d/%Y %H:%M'), finish_time: Time.strptime('09/07/2022 04:00', '%m/%d/%Y %H:%M'), truck_id: 6, venue_id: 6, confirmed: true)
 end
 
 
