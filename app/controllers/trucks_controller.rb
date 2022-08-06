@@ -6,7 +6,7 @@ class TrucksController < ApplicationController
 
     # GET /foodtrucks
     def index
-        @trucks = Truck.all.with_attached_picture
+        @trucks = Truck.all.with_attached_picture.includes(:events)
 
         render json: @trucks.map { |truck|
             truck.as_json.merge({ picture_url: url_for(truck.picture)})
