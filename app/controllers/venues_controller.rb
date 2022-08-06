@@ -39,7 +39,7 @@ class VenuesController < ApplicationController
 
         if @venue.save
             auth_token = Knock::AuthToken.new payload: {sub: @venue.id}
-            render json: {id: @venue.id, email: @venue.email, jwt: auth_token.token}, status: :created
+            render json: {id: @venue.id, email: @venue.email, user: "venue", jwt: auth_token.token}, status: :created
         else
             print @venue.errors
             render json: {error: @venue.errors}
@@ -51,7 +51,7 @@ class VenuesController < ApplicationController
         @venue = Venue.find_by_email(params[:email])
         if @venue && @venue.authenticate(params[:password])
             auth_token = Knock::AuthToken.new payload: {sub: @venue.id}
-            render json: {id: @venue.id, email: @venue.email, jwt: auth_token.token}, status: 200
+            render json: {id: @venue.id, email: @venue.email, user: "venue", jwt: auth_token.token}, status: 200
         else
             render json: {error: "Invalid email or password"}
         end
