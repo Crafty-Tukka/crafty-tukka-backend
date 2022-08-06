@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.routes.default_url_options = {
-  host: 'http://localhost:5000/'
+  host: 'https://crafty-tukka-api.herokuapp.com/'
 }
 
 Rails.application.configure do
