@@ -7,7 +7,7 @@ class VenuesController < ApplicationController
 
     # GET /venues
     def index
-        @venues = Venue.all.with_attached_picture
+        @venues = Venue.all.with_attached_picture.includes(:events)
 
         render json: @venues.map { | venue |
             venue.as_json.merge({ picture_url: url_for(venue.picture)})

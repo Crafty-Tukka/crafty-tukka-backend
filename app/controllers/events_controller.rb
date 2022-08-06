@@ -12,7 +12,7 @@ class EventsController < ApplicationController
         @events << event.render_event_details
       end
     else
-      Event.order(date: :asc).each do |event|
+      Event.includes(:venue).order(date: :asc).each do |event|
         @events << event.render_event_details
       end
     # @events = Event.all
